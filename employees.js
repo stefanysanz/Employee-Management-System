@@ -1,26 +1,41 @@
-CREATE DATABASE employees_db;
+require("console.table");
+const inquirer = require('inquirer')
+const mysql = require('mysql2')
 
-USE employees_db;
+const db = mysql.createConnection('mysql://root:Enzo@2016@localhost/employees_db')
 
-CREATE TABLE departments(
-  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
-  name VARCHAR(30) UNIQUE NOT NULL
-);
+db.connect(function (err) {
+  if (err) throw err;
+  console.log("OK!")
+});
 
-CREATE TABLE roles(
-  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
-  title VARCHAR(30) UNIQUE NOT NULL,
-  salary DECIMAL UNSIGNED NOT NULL,
-  departmentId INT UNSIGNED NOT NULL,
-  FOREIGN KEY(departmentId) REFERENCES departments(id)
-);
+inquirer.prompt([
+  {
+    name: "choices",
+    type: "list",
+    message: "Welcome. What would you like to do?",
+    choices: ['View all employees', 'Add an employee', 'Delete an employee']
+  }
+])
+  .then(res => {
+    console.log(res);
 
-CREATE TABLE employees(
-  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
-  firstName VARCHAR(30) NOT NULL,
-  lastName VARCHAR(30) NOT NULL,
-  roleId INT UNSIGNED NOT NULL,
-  managerId INT UNSIGNED,
-  FOREIGN KEY(roleId) REFERENCES roles(id),
-  FOREIGN KEY(managerId) REFERENCES employees(id)
-);
+    switch (res.choices) {
+      case "View all employees":
+        db.query('SELECT * FROM employees', (err, rows) => {
+          for (let i = 0; i < rows.length; i++) {
+            console.log(rows[i]);
+          }
+        });
+        break;
+      case "Add an employee":
+        db.query(`INSERT INTO employees (firstName, lastName, roleId, managerId) VALUES ('stef', 'sanz', 1, 3)`, (err, res) => { });
+        break;
+      case "Delete an employee":
+        db.query(`DELETE FROM employees WHERE firstName='stef' AND lastName='sanz'`, (err, res) => { });
+        break;
+      default:
+        console.log("do something else")
+    }
+  })
+  .catch(err => console.log(err))
