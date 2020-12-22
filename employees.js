@@ -9,8 +9,36 @@ db.connect((err) => {
   }
 })
 
-const updateEmplyeeRolePrompt = () => {
+const updateEmployeeRole = (res) => {
+  const query = `UPDATE employees SET roleId="${res.role}" WHERE id=${res.id}`
+  db.query(query, (err, res) => {
+    if (err) {
+      console.log(err)
+      return
+    }
+    intro()
+  })
+}
 
+const updateEmplyeeRolePrompt = () => {
+  inquirer.prompt([
+    {
+      name: "id",
+      type: "input",
+      message: "Enter employee ID:",
+    },
+    {
+      name: "role",
+      type: "input",
+      message: "Enter role ID:",
+    },
+  ])
+  .then(res => {
+    updateEmployeeRole(res)
+  })
+  .catch(err => {
+    console.log(err)
+  })
 }
 
 const addEmployee = (res) => {
