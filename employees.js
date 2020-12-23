@@ -20,7 +20,7 @@ const updateEmployeeRole = (res) => {
   })
 }
 
-const updateEmplyeeRolePrompt = () => {
+const updateEmployeeRolePrompt = () => {
   inquirer.prompt([
     {
       name: "id",
