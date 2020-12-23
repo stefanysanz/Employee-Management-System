@@ -12,6 +12,4 @@ This app is a command-line application that at a minimum allows the user to:
 
 [Check out my video here!](https://drive.google.com/file/d/1_0g32Bx7UICdOvyPMdJiTemDE8j7iFCu/view?usp=sharing)
 
-<img src="/img/ems.jpg width="300" height="300"">
-<img src="/img/ems2.jpg width="300" height="300"">
-<img src="/img/ems3.jpg width="300" height="300"">
+<<img class="ems1" src="img/ems.jpg" width="300" height="300">
