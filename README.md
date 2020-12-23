@@ -13,5 +13,5 @@ This app is a command-line application that at a minimum allows the user to:
   * Update employee roles
 
 <img class="ems" src="img/ems.jpg" width="600" height="300">
-<img class="ems1" src="img/ems1.jpg" width="600" height="300">
-<img class="ems2" src="img/ems2.jpg" width="600" height="300">
+<img class="ems1" src="img/ems2.jpg" width="600" height="300">
+<img class="ems2" src="img/ems3.jpg" width="600" height="300">
