@@ -113,7 +113,7 @@ const addRolePrompt = () => {
     },
   ])
   .then(res => {
-    addRole(res.title, res.salary, res.department)
+    addRole(res)
   })
   .catch(err => {
     console.log(err)
